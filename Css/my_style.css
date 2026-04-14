@@ -1,0 +1,570 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    margin-bottom: 16px;
+}
+
+p {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ===== NAVBAR ===== */
+#mainNavbar {
+    background-color: #FFF6BB;
+    padding: 8px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.imagenLogo {
+    width: 150px;
+    height: 45px;
+    object-fit: contain;
+}
+
+/* Links del menú */
+.navbar-nav .nav-link.menu {
+    font-size: 15px;
+    color: black;
+    text-decoration: none;
+    padding: 6px 10px;
+    transition: color 0.2s;
+}
+.navbar-nav .nav-link.menu:hover {
+    color: gray;
+}
+
+/* Botón "Iniciar Sesión" */
+.btn-nav-outline {
+    border: 2px solid #FFD54A !important;
+    border-radius: 20px !important;
+    padding: 5px 14px !important;
+}
+.btn-nav-outline:hover {
+    background-color: #FFD54A !important;
+    color: black !important;
+}
+
+/* Botón "Registrarse" */
+.btn-nav-filled {
+    background-color: #FFD54A !important;
+    border-radius: 20px !important;
+    padding: 5px 14px !important;
+    font-weight: 600;
+}
+.btn-nav-filled:hover {
+    background-color: #f5c800 !important;
+    color: black !important;
+}
+
+/* Hamburguesa */
+.navbar-toggler {
+    border-color: rgba(0,0,0,0.25);
+}
+
+/* En móvil, los links de acción tienen margen superior */
+@media (max-width: 991px) {
+    .btn-nav-outline,
+    .btn-nav-filled {
+        display: inline-block;
+        margin-top: 6px;
+        margin-left: 0 !important;
+    }
+}
+
+/* ===== CARRUSEL ===== */
+.imagenCarousel {
+    height: 520px;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.carousel-caption {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: none;
+}
+
+.carousel-titulo {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.carousel-subtitulo {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: #ffe;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    margin-top: 8px;
+}
+
+.btn-carousel {
+    background-color: #FFD54A;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 28px;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.btn-carousel:hover {
+    background-color: #f5c800;
+    color: black;
+    transform: scale(1.04);
+}
+
+@media (max-width: 576px) {
+    .imagenCarousel {
+        height: 280px;
+    }
+    .carousel-subtitulo {
+        display: none;
+    }
+}
+
+/* ===== SECCIONES GENERALES ===== */
+section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.seccion2 {
+    background-color: #FFF6BB;
+}
+
+/* ===== SOBRE NOSOTROS / GRID DE DOS COLUMNAS ===== */
+.articulos2 {
+    width: 42%;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* En móvil pasan a ancho completo */
+@media (max-width: 768px) {
+    .articulos2 {
+        width: 90%;
+        display: block;
+        margin: 10px auto;
+    }
+}
+
+.textoArticulo2 {
+    font-size: 18px;
+    vertical-align: middle;
+    line-height: 1.7;
+    margin-top: 12px;
+}
+
+.imagenArticulo {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    max-height: 380px;
+}
+
+/* ===== PEDIR CITA ===== */
+.articuloBoton {
+    width: 40%;
+    display: inline-block;
+    margin: 10px;
+    text-align: left;
+    vertical-align: top;
+    background-color: #FFD54A;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: width 0.2s, transform 0.2s;
+}
+.articuloBoton:hover {
+    transform: scale(1.02);
+}
+
+/* En móvil los botones de cita son full-width */
+@media (max-width: 600px) {
+    .articuloBoton {
+        width: 85%;
+        display: block;
+        margin: 12px auto;
+    }
+}
+
+.imagenBoton {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 220px;
+}
+
+.textoBoton {
+    margin: 8px;
+    text-align: center;
+    font-size: 22px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+/* ===== DOCTORES ===== */
+.cardDocrtor {
+    background-color: #FFD54A;
+    width: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 8px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    transition: transform 0.2s;
+}
+.cardDocrtor:hover {
+    transform: translateY(-4px);
+}
+
+.cardDocrtor .imagenBoton {
+    height: 180px;
+    object-fit: cover;
+}
+
+.doctorCardInfo {
+    padding: 8px 10px 12px;
+}
+
+.doctorNombre {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.doctorEspecialidad {
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+}
+
+.doctorCardContainer {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 12px;
+    gap: 4px;
+}
+
+/* Scrollbar sutil */
+.doctorCardContainer::-webkit-scrollbar {
+    height: 6px;
+}
+.doctorCardContainer::-webkit-scrollbar-thumb {
+    background: #FFD54A;
+    border-radius: 10px;
+}
+
+/* ===== UBÍCANOS ===== */
+#ubicanos p {
+    font-size: 16px;
+    margin: 8px 0;
+    line-height: 1.8;
+}
+#ubicanos .bi {
+    color: #c8a800;
+    margin-right: 6px;
+}
+
+/* En móvil el mapa es full-width */
+@media (max-width: 768px) {
+    #ubicanos .articulos2:last-child {
+        width: 95%;
+    }
+}
+
+/* ===== FOOTER ===== */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 24px 32px;
+    background-color: #fff6bb88;
+    border-top: 2px solid #FFD54A;
+    gap: 16px;
+}
+
+.ariculosLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.divLinks {
+    padding: 10px 20px;
+}
+
+.divLinks h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 576px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .ariculosLinks {
+        justify-content: center;
+    }
+}
+
+/* ===================================================
+   AUTH PAGES (registro.html / login.html)
+   =================================================== */
+
+/* Fondo blanco, igual que el resto de la web */
+.auth-bg {
+    min-height: calc(100vh - 66px);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 16px;
+}
+
+/* Tarjeta amarilla (#FFF6BB como .seccion2) */
+.auth-card {
+    background: #FFF6BB;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    padding: 40px 44px;
+    width: 100%;
+    max-width: 680px;
+    border: 2px solid #FFD54A;
+}
+
+.auth-card .auth-logo {
+    display: block;
+    margin: 0 auto 6px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.auth-card h1 {
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.auth-card .auth-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+}
+
+/* Separadores de sección dentro del form */
+.form-section-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7a6000;
+    margin: 20px 0 10px;
+    border-bottom: 1px solid #FFD54A;
+    padding-bottom: 4px;
+}
+
+/* Labels */
+.form-label {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+/* Campos — fondo blanco para contrastar con la tarjeta amarilla */
+.form-control,
+.form-select {
+    border-radius: 12px;
+    border: 1.5px solid #e0c84a;
+    padding: 10px 14px;
+    font-family: "Nunito", sans-serif;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #f5c800;
+    box-shadow: 0 0 0 3px rgba(255, 213, 74, 0.35);
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Contenedor con ícono a la izquierda */
+.input-icon-wrap {
+    position: relative;
+}
+.input-icon-wrap > .bi {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 1rem;
+    pointer-events: none;
+}
+.input-icon-wrap .form-control,
+.input-icon-wrap .form-select {
+    padding-left: 36px;
+}
+
+/* Toggle mostrar/ocultar contraseña */
+.password-wrap {
+    position: relative;
+}
+.password-wrap .form-control {
+    padding-right: 42px;
+}
+.btn-toggle-pass {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+.btn-toggle-pass:hover { color: #555; }
+
+/* Botón principal del formulario */
+.btn-primary-clinic {
+    background-color: #FFD54A;
+    color: #000;
+    border: 2px solid #f5c800;
+    border-radius: 25px;
+    padding: 12px 0;
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 8px;
+    transition: background-color 0.2s, transform 0.15s;
+    cursor: pointer;
+}
+.btn-primary-clinic:hover {
+    background-color: #f5c800;
+    transform: scale(1.01);
+}
+
+/* Link "¿Olvidaste tu contraseña?" */
+.forgot-link {
+    font-size: 0.85rem;
+    color: #b89000;
+    font-weight: 600;
+    text-decoration: none;
+    float: right;
+    margin-top: 2px;
+}
+.forgot-link:hover { text-decoration: underline; }
+
+/* Divisor "o" entre secciones */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    color: #b89000;
+    font-size: 0.85rem;
+}
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #FFD54A;
+}
+
+/* Link inferior (¿Ya tienes cuenta?) */
+.auth-footer-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+.auth-footer-link a {
+    color: #b89000;
+    font-weight: 700;
+    text-decoration: none;
+}
+.auth-footer-link a:hover { text-decoration: underline; }
+
+/* Alerta de error */
+.alert-login {
+    display: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+}
+
+/* Checkbox */
+.form-check-input:checked {
+    background-color: #FFD54A;
+    border-color: #f5c800;
+}
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 213, 74, 0.35);
+}
+
+@media (max-width: 576px) {
+    .auth-card { padding: 28px 18px; }
+}
+
+/* ── Únicos estilos nuevos: grid del formulario y márgenes del main ── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid .col-full { grid-column: 1 / -1; }
+.form-grid .col-3 { grid-column: span 1; }
+.form-actions { margin-top: 28px; display: flex; gap: 12px; align-items: center; }
+.btn-secondary-clinic { background: none; color: #7a6000; border: 2px solid #e0c84a; border-radius: 25px; padding: 11px 28px; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none; transition: background 0.18s; }
+.btn-secondary-clinic:hover { background: #FFF6BB; }
+.page-title { font-size: 1.6rem; color: #3a2f00; margin-bottom: 6px; }
+.page-subtitle { color: #888; font-size: 0.95rem; margin-bottom: 28px; }
+
+@media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-grid .col-full, .form-grid .col-3 { grid-column: 1 / -1; }
+}

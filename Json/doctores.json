@@ -1,0 +1,49 @@
+{
+  "doctores": [
+    {
+      "nombre": "Dr. Carlos Mendoza",
+      "especialidad": "Cardiología",
+      "imagen": "carlos_mendoza.png"
+    },
+    {
+      "nombre": "Dra. María García",
+      "especialidad": "Pediatría",
+      "imagen": "maria_garcia.png"
+    },
+    {
+      "nombre": "Dr. Juan Rodríguez",
+      "especialidad": "Neurología",
+      "imagen": "juan_rodriguez.png"
+    },
+    {
+      "nombre": "Dra. Ana Martínez",
+      "especialidad": "Dermatología",
+      "imagen": "ana_martinez.png"
+    },
+    {
+      "nombre": "Dr. Roberto López",
+      "especialidad": "Oncología",
+      "imagen": "roberto_lopez.png"
+    },
+    {
+      "nombre": "Dra. Sandra Fernández",
+      "especialidad": "Ginecología",
+      "imagen": "sandra_fernandez.png"
+    },
+    {
+      "nombre": "Dr. Miguel Sánchez",
+      "especialidad": "Oftalmología",
+      "imagen": "miguel_sanchez.png"
+    },
+    {
+      "nombre": "Dra. Laura Díaz",
+      "especialidad": "Psiquiatría",
+      "imagen": "laura_diaz.png"
+    },
+    {
+      "nombre": "Dr. Fernando Ruiz",
+      "especialidad": "Traumatología",
+      "imagen": "fernando_ruiz.png"
+    }
+  ]
+}

@@ -568,3 +568,103 @@ footer {
     .form-grid { grid-template-columns: 1fr; }
     .form-grid .col-full, .form-grid .col-3 { grid-column: 1 / -1; }
 }
+
+/* estilo de editar usuario */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-actions { margin-top: 28px; display: flex; gap: 12px; align-items: center; }
+        .btn-secondary-clinic { background: none; color: #7a6000; border: 2px solid #e0c84a; border-radius: 25px; padding: 11px 28px; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none; transition: background 0.18s; }
+        .btn-secondary-clinic:hover { background: #FFF6BB; }
+        .page-title { font-size: 1.6rem; color: #3a2f00; margin-bottom: 6px; }
+        .page-subtitle { color: #888; font-size: 0.95rem; margin-bottom: 28px; }
+
+        /* Formulario de búsqueda de ID */
+        .busqueda-id {
+            background: #fff;
+            border: 1.5px solid var(--amarillo-borde);
+            border-radius: 16px;
+            padding: 22px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .busqueda-id .bi-titulo {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--dorado);
+            margin-bottom: 8px;
+        }
+        .busqueda-id .bi-grupo {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        /* Separador visual entre los dos formularios */
+        .seccion-edicion {
+            border-top: 2px dashed var(--amarillo-borde);
+            padding-top: 28px;
+            margin-top: 8px;
+        }
+        .seccion-edicion-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .seccion-edicion-header h2 {
+            font-size: 1.1rem;
+            color: #3a2f00;
+        }
+
+        /* Estado deshabilitado: campos grises y sin interacción */
+        .form-control:disabled,
+        .form-select:disabled {
+            background-color: #f5f5f5;
+            border-color: #ddd;
+            color: #aaa;
+            cursor: not-allowed;
+            opacity: 1; /* evita que algunos navegadores los hagan muy pálidos */
+        }
+
+        /* Aviso "busca primero" cuando el form está deshabilitado */
+        .aviso-busqueda {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fffde7;
+            border: 1.5px solid var(--amarillo-borde);
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            color: #7a6000;
+            margin-bottom: 20px;
+        }
+        .aviso-busqueda .bi { font-size: 1.1rem; flex-shrink: 0; }
+        /* El aviso se oculta cuando el formulario está habilitado (PHP lo controla) */
+        .aviso-oculto { display: none; }
+
+        /* Indicador del usuario encontrado */
+        .usuario-encontrado {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0fdf4;
+            border: 1.5px solid #6ee7b7;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            color: #065f46;
+            margin-bottom: 20px;
+        }
+        .usuario-encontrado .bi { font-size: 1.1rem; flex-shrink: 0; }
+
+        @media (max-width: 640px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .busqueda-id { flex-direction: column; align-items: stretch; }
+        }

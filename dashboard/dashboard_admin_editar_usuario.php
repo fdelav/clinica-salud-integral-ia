@@ -15,7 +15,7 @@
                 
 </head>
 <body>
-    <?php include '../includes/sidebar_admin.php'?>
+    <?php $paginaActual = 'editar_usuario'; include '../includes/sidebar_admin.php'?>
 
     <!-- ══════════════════════════════════════
          CONTENIDO PRINCIPAL

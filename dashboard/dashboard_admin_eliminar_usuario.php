@@ -14,7 +14,7 @@
                 
 </head>
 <body>
-    <?php include '../includes/sidebar_admin.php'?>
+    <?php $paginaActual = 'eliminar_usuario'; include '../includes/sidebar_admin.php'?>
 
     <!-- ══════════════════════════════════════
          CONTENIDO PRINCIPAL

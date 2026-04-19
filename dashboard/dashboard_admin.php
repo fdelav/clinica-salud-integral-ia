@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <?php include '../includes/sidebar_admin.php'?>
+    <?php $paginaActual = 'inicio'; include '../includes/sidebar_admin.php'?>
 
     <!-- ══════════════════════════════════════
          CONTENIDO PRINCIPAL

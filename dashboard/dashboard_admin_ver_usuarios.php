@@ -15,7 +15,7 @@
     <link href="../Css/ver_usuario.css" rel="stylesheet">
 </head>
 <body>
-    <?php include '../includes/sidebar_admin.php'?>
+    <?php $paginaActual = 'ver_usuarios'; include '../includes/sidebar_admin.php'?>
 
     <!-- ══════════════════════════════════════
          CONTENIDO PRINCIPAL

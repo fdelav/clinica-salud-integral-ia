@@ -6,7 +6,7 @@
 
     $sql="SELECT emailUser, passwordUser, rolUser 
         FROM usuario 
-        WHERE emailUser = '$emailUser' AND passwordUser = '$passwordUser'";
+        WHERE emailUser = '$emailUser'";
     
     $result = $conn->query($sql);
     // Process the result set
@@ -14,6 +14,12 @@
         echo "debug";
         // Output data of each row
         while($row = $result->fetch_assoc()) {
+
+            if (!password_verify($passwordUser, $row["passwordUser"])){
+                
+                exit;
+            }
+
             echo $row["emailUser"];
             echo "email: " . $row["emailUser"] . " - contraseña: " . $row["passwordUser"] . $row['rolUser']. "<br>";
              

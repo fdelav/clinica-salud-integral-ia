@@ -8,7 +8,7 @@
     $fechaNacimientoUsr = $_POST['fechaNacimientoUsr'];
     $generoUser = $_POST['generoUser'];
     $emailUser = $_POST['emailUser'];
-    $passwordUser = $_POST['passwordUser'];
+    $passwordUser = password_hash($_POST['passwordUser'], PASSWORD_DEFAULT);
     $repeatPasswordUser = $_POST['repeatPasswordUser'];
     $telUser = $_POST['telUser'];
     $rolUser = $_POST['rolUser'];

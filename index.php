@@ -88,7 +88,7 @@ if ($logueado) {
                     <?php else: ?>
                         <!-- Sin sesión: Iniciar Sesión + Registrarse -->
                         <li class="nav-item ms-lg-2">
-                            <a class="nav-link menu btn-nav-outline" href="Html/login.html">Iniciar Sesión</a>
+                            <a class="nav-link menu btn-nav-outline" href="Html/login.php">Iniciar Sesión</a>
                         </li>
                         <li class="nav-item ms-lg-2">
                             <a class="nav-link menu btn-nav-filled" href="Html/registro.html">Registrarse</a>

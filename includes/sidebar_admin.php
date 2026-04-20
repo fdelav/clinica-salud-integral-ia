@@ -16,7 +16,7 @@
     <nav class="sidebar-nav">
 
         <!-- Volver a la página principal -->
-        <a href="../index.html" class="nav-item back-btn" data-tooltip="Ir al inicio">
+        <a href="../index.php" class="nav-item back-btn" data-tooltip="Ir al inicio">
             <i class="bi bi-house-fill nav-icon"></i>
             <span class="nav-label">Página principal</span>
         </a>

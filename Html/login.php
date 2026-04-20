@@ -1,3 +1,17 @@
+<?php
+    require_once '../includes/sesiones.php';
+    iniciarSesion();
+
+// Si ya hay sesión activa, redirigir directo al index
+if (obtenerUsuario() !== null) {
+    header('Location: ../index.php');
+    exit;
+}
+
+// Leer y limpiar el mensaje flash de error (si existe)
+$errorLogin = $_SESSION['error_login'] ?? null;
+unset($_SESSION['error_login']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +32,7 @@
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
         <div class="container-fluid px-3">
-            <a class="navbar-brand" href="../index.html">
+            <a class="navbar-brand" href="../index.php">
                 <img src="../Img/logo clinica salud integral.png" class="imagenLogo" alt="Logo Clínica Salud Integral">
             </a>
             <button class="navbar-toggler" type="button"
@@ -28,10 +42,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link menu" href="../index.html#sobre_nosotros">Sobre nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link menu" href="../index.html#pedir_cita">Pedir Cita</a></li>
-                    <li class="nav-item"><a class="nav-link menu" href="../index.html#ubicanos">Ubícanos</a></li>
-                    <li class="nav-item ms-lg-2"><a class="nav-link menu btn-nav-outline" href="login.html">Iniciar Sesión</a></li>
+                    <li class="nav-item"><a class="nav-link menu" href="../index.php#sobre_nosotros">Sobre nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link menu" href="../index.php#nuestros_servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link menu" href="../index.php#pedir_cita">Pedir Cita</a></li>
+                    <li class="nav-item"><a class="nav-link menu" href="../index.php#ubicanos">Ubícanos</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link menu btn-nav-outline" href="login.php">Iniciar Sesión</a></li>
                     <li class="nav-item ms-lg-2"><a class="nav-link menu btn-nav-filled" href="registro.html">Registrarse</a></li>
                 </ul>
             </div>
@@ -46,13 +61,15 @@
             <h1>Bienvenido</h1>
             <p class="auth-subtitle">Inicia sesión para gestionar tus citas</p>
 
-            <!-- Alerta de error: se muestra si PHP redirige con ?error=1 -->
-            <div class="alert alert-danger alert-login" id="loginAlert" role="alert">
+            <!-- Alerta de error: visible solo si PHP dejó un flash message -->
+            <?php if ($errorLogin): ?>
+            <div class="alert alert-danger alert-login" role="alert" style="display:block;">
                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                Correo o contraseña incorrectos. Intenta de nuevo.
+                <?= htmlspecialchars($errorLogin) ?>
             </div>
+            <?php endif; ?>
 
-            <form action="../php/autentificacion.php" method="post">
+            <form action="../Php/autentificacion.php" method="post">
 
                 <div class="mb-3">
                     <label class="form-label" for="emailUser">Correo electrónico</label>
@@ -114,12 +131,6 @@
                 input.type = 'password';
                 icon.className = 'bi bi-eye-slash';
             }
-        }
-
-        // Muestra alerta si el PHP redirige con ?error=1
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('error') === '1') {
-            document.getElementById('loginAlert').style.display = 'block';
         }
     </script>
 </body>

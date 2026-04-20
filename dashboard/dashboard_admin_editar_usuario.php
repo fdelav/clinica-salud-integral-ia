@@ -1,3 +1,7 @@
+<?php
+require_once '../includes/sesiones.php';
+verificarRol(['admin'])
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

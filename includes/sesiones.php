@@ -4,7 +4,7 @@
  * Ubicación en el proyecto: Php/sesiones.php
  *
  * Uso en cada dashboard:
- *   require_once '../Php/sesiones.php';
+ *   require_once '../includes/sesiones.php';
  *   verificarSesion();
  *   verificarRol(['admin']);          // solo admins
  *   verificarRol(['doctor','admin']); // varios roles permitidos

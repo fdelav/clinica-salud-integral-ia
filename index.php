@@ -11,7 +11,7 @@ if ($logueado) {
     switch ($usuario['rol']) {
         case 'admin':      $dashboardUrl = 'dashboard/dashboard_admin.php';      break;
         case 'doctor':     $dashboardUrl = 'dashboard/dashboard_doctor.php';     break;
-        case 'enfermero':  $dashboardUrl = 'dashboard/dashboard_enfermero.php';  break;
+        case 'paciente':  $dashboardUrl = 'dashboard/dashboard_paciente.php';  break;
         case 'recepcionista': $dashboardUrl = 'dashboard/dashboard_recepcionista.php'; break;
         default:
             error_log("logueo falla".($usuario['rol'] === 'recepcionista'));

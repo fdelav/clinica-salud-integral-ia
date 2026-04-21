@@ -1,9 +1,10 @@
 <?php
 require_once '../includes/sesiones.php';
-verificarRol(['secretario']);
+verificarRol(['recepcionista']);
 
 require '../Php/coneccion.php';
-
+error_log("Entra al asignar paciente");
+echo "hola";
 // ── Validación básica ────────────────────────────────────────────────────────
 $contCita     = isset($_POST['contCita'])     ? (int)$_POST['contCita']     : 0;
 $contPaciente = isset($_POST['contPaciente']) ? (int)$_POST['contPaciente'] : 0;

@@ -170,11 +170,10 @@ verificarRol(['admin'])
                         <div class="input-icon-wrap">
                             <i class="bi bi-briefcase-fill"></i>
                             <select class="form-select" id="rolUser" name="rolUser" required>
-                                <option value="na">Sin rol</option>
+                                <option value="visitante">Visitante</option>
                                 <option value="doctor">Doctor</option>
-                                <option value="enfermero">Enfermero</option>
-                                <option value="secretario">Secretario</option>
-                                <option value="diseñador">Diseñador</option>
+                                <option value="paciente">Paciente</option>
+                                <option value="recep">Recepcionista</option>
                                 <option value="admin">Administrador</option>
                             </select>
                         </div>

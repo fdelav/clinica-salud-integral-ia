@@ -26,7 +26,7 @@
             echo $row["emailUser"];
             echo "email: " . $row["emailUser"] . " - contraseña: " . $row["passwordUser"] . $row['rolUser']. "<br>";
              
-            
+            error_log("usuario: ". $nombreUser." rol: ". $row['rolUser']. " inicio sesion");
             switch($row['rolUser']){
                 case 'doctor':
                     echo "eres un doctor";
@@ -35,6 +35,13 @@
                     $_SESSION['usuario'] = $emailUser;
                     $_SESSION['nombre']  = $nombreUser;
                     $_SESSION['rol']     = 'admin';
+                    $_SESSION['id']      = $idUser;
+                    header("Location: ../index.php");
+                    exit;
+                case 'recep':
+                    $_SESSION['usuario'] = $emailUser;
+                    $_SESSION['nombre']  = $nombreUser;
+                    $_SESSION['rol']     = 'recepcionista';
                     $_SESSION['id']      = $idUser;
                     header("Location: ../index.php");
                     exit;

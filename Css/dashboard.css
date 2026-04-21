@@ -456,3 +456,196 @@ h1, h2, h3 {
     .content-area { padding: 20px 16px; }
     .topbar { padding: 14px 16px; }
 }
+
+/* ── Tarjetas de resumen ── */
+.resumen-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.resumen-card {
+    background: #fff;
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 16px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.resumen-card:hover {
+    box-shadow: 0 6px 20px rgba(255,213,74,0.2);
+    transform: translateY(-2px);
+}
+
+.resumen-icono {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+}
+
+.resumen-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resumen-valor {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #3a2f00;
+    line-height: 1;
+}
+
+.resumen-label {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.resumen-link {
+    font-size: 0.78rem;
+    color: var(--dorado);
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.resumen-link:hover { color: #7a6000; }
+
+/* ── Columnas del dashboard ── */
+.dashboard-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ── Panel con lista ── */
+.dashboard-panel {
+    background: #fff;
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--amarillo-borde);
+    background: #fffdf0;
+}
+.panel-header h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #3a2f00;
+    margin: 0;
+}
+.panel-header-link {
+    font-size: 0.82rem;
+    color: var(--dorado);
+    text-decoration: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.panel-header-link:hover { color: #7a6000; }
+
+.panel-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f5f5f5;
+    transition: background 0.15s;
+}
+.panel-item:last-child { border-bottom: none; }
+.panel-item:hover { background: #fffdf0; }
+
+.panel-item-hora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 44px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #3a2f00;
+}
+.panel-item-hora-fin {
+    font-size: 0.72rem;
+    color: #aaa;
+    font-weight: 400;
+}
+
+.panel-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+.panel-item-titulo {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.panel-item-sub {
+    font-size: 0.78rem;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.panel-item-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.panel-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 40px 20px;
+    color: #bbb;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.panel-vacio p { margin: 0; color: #bbb; }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+    .resumen-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .dashboard-cols { grid-template-columns: 1fr; }
+    .resumen-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+    .resumen-grid { grid-template-columns: 1fr; }
+}

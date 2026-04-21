@@ -45,6 +45,12 @@
                     $_SESSION['id']      = $idUser;
                     header("Location: ../index.php");
                     exit;
+                case 'paciente':
+                    $_SESSION['usuario'] = $emailUser;
+                    $_SESSION['nombre']  = $nombreUser;
+                    $_SESSION['rol']     = 'paciente';
+                    $_SESSION['id']      = $idUser;
+                    header("Location: ../index.php");
             }
         }
     } else {

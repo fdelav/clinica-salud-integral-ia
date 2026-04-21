@@ -1,0 +1,452 @@
+/* ══════════════════════════════════════
+   dashboard_paciente.css
+   Estilos específicos del panel de paciente.
+   Complementa dashboard.css — no duplicar variables ni layout base.
+══════════════════════════════════════ */
+
+/* ── Botón "Agendar cita" en topbar ── */
+.pac-btn-agendar {
+    display: inline-flex;
+    align-items: center;
+    background: var(--amarillo);
+    border: 2px solid var(--amarillo-borde);
+    color: #3a2f00;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background 0.18s, transform 0.15s;
+}
+.pac-btn-agendar:hover {
+    background: var(--amarillo-hover);
+    color: #000;
+    transform: translateY(-1px);
+}
+
+/* ── Alertas flash ── */
+.pac-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.pac-alert-success {
+    background: #f0fdf4;
+    border: 1.5px solid #6ee7b7;
+    color: #065f46;
+}
+.pac-alert-error {
+    background: #fef2f2;
+    border: 1.5px solid #fca5a5;
+    color: #991b1b;
+}
+
+/* ── Filtros de estado (gestionar citas) ── */
+.pac-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.pac-filtro-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: #5a4800;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    transition: background 0.18s, color 0.18s;
+}
+.pac-filtro-btn:hover,
+.pac-filtro-btn.active {
+    background: var(--amarillo);
+    color: #000;
+}
+
+/* ── Grid de tarjetas de citas (gestionar) ── */
+.pac-citas-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.pac-cita-card {
+    background: #fff;
+    border: 1.5px solid #e8e0c0;
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.pac-cita-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+    transform: translateY(-2px);
+}
+.pac-cita-pasada {
+    opacity: 0.65;
+}
+
+/* Columna fecha */
+.pac-cita-fecha-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 52px;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 12px;
+    padding: 10px 8px;
+}
+.pac-cita-dia {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #3a2f00;
+    line-height: 1;
+}
+.pac-cita-mes {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.68rem;
+    color: var(--dorado);
+    letter-spacing: 0.05em;
+}
+.pac-cita-anio {
+    font-size: 0.68rem;
+    color: #aaa;
+}
+
+/* Cuerpo de la tarjeta */
+.pac-cita-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+.pac-cita-doctor {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #3a2f00;
+}
+.pac-cita-hora,
+.pac-cita-lugar,
+.pac-cita-motivo {
+    font-size: 0.82rem;
+    color: #666;
+}
+
+/* Acciones de la tarjeta */
+.pac-cita-acciones {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.pac-btn-reagendar {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-decoration: none;
+    color: #3a2f00;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    transition: background 0.18s;
+    cursor: pointer;
+}
+.pac-btn-reagendar:hover {
+    background: var(--amarillo);
+    color: #000;
+}
+.pac-btn-salir {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1.5px solid #fca5a5;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    text-decoration: none;
+}
+.pac-btn-salir:hover {
+    background: #fee2e2;
+    color: #7f1d1d;
+}
+
+/* ── Estado vacío ── */
+.pac-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 20px;
+    color: #bbb;
+    text-align: center;
+}
+.pac-empty i { font-size: 3rem; }
+.pac-empty p { font-size: 0.95rem; color: #aaa; margin: 0; }
+
+/* ══════════════════════════════════════
+   AGENDAR CITA
+══════════════════════════════════════ */
+
+/* Aviso de reagendar */
+.pac-reagendar-aviso {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fffde7;
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 14px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    color: #7a6000;
+}
+.pac-reagendar-aviso > i {
+    font-size: 1.5rem;
+    color: var(--dorado);
+    flex-shrink: 0;
+}
+.pac-reagendar-aviso strong { display: block; font-size: 0.92rem; }
+
+/* Tarjetas de modo (doctor / fecha) */
+.pac-modo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+.pac-modo-card {
+    background: #fff;
+    border: 1.5px solid #e8e0c0;
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-decoration: none;
+    color: #3a2f00;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.pac-modo-card:hover {
+    border-color: var(--amarillo);
+    box-shadow: 0 8px 24px rgba(255,213,74,0.3);
+    transform: translateY(-4px);
+    color: #000;
+}
+.pac-modo-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--amarillo-claro);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--dorado);
+    transition: background 0.2s;
+}
+.pac-modo-card:hover .pac-modo-icon {
+    background: var(--amarillo);
+    color: #3a2f00;
+}
+.pac-modo-titulo {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+.pac-modo-desc {
+    font-size: 0.88rem;
+    color: #888;
+    line-height: 1.5;
+}
+.pac-modo-flecha {
+    font-size: 1.3rem;
+    color: var(--dorado);
+    margin-top: 4px;
+}
+
+/* Link volver */
+.pac-volver {
+    display: inline-flex;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--dorado);
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: color 0.18s;
+}
+.pac-volver:hover { color: #7a6000; }
+
+/* Formulario de búsqueda */
+.pac-busqueda-form {
+    background: #fff;
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+}
+.pac-busqueda-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+.pac-busqueda-grupo {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.pac-btn-buscar {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: var(--amarillo);
+    border: 2px solid var(--amarillo-borde);
+    color: #3a2f00;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s;
+    white-space: nowrap;
+}
+.pac-btn-buscar:hover {
+    background: var(--amarillo-hover);
+    transform: translateY(-1px);
+}
+
+/* Grid de citas disponibles */
+.pac-citas-disponibles-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pac-cita-disponible {
+    background: #fff;
+    border: 1.5px solid #e8e0c0;
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.pac-cita-disponible:hover {
+    border-color: var(--amarillo);
+    box-shadow: 0 4px 16px rgba(255,213,74,0.2);
+}
+
+/* Mini fecha en citas disponibles */
+.pac-disp-fecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 44px;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 10px;
+    padding: 8px 6px;
+}
+.pac-disp-dia {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #3a2f00;
+    line-height: 1;
+}
+.pac-disp-mes {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.62rem;
+    color: var(--dorado);
+    letter-spacing: 0.05em;
+}
+
+.pac-disp-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+.pac-disp-doctor {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #3a2f00;
+}
+.pac-disp-hora,
+.pac-disp-lugar,
+.pac-disp-motivo {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Botón inscribirse */
+.pac-btn-inscribir {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    background: var(--amarillo);
+    border: 2px solid var(--amarillo-borde);
+    color: #3a2f00;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s;
+    white-space: nowrap;
+}
+.pac-btn-inscribir:hover {
+    background: var(--amarillo-hover);
+    transform: scale(1.03);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .pac-modo-grid { grid-template-columns: 1fr; }
+    .pac-cita-card { flex-wrap: wrap; }
+    .pac-cita-acciones { flex-direction: row; align-items: center; width: 100%; }
+}
+@media (max-width: 576px) {
+    .pac-cita-disponible { flex-wrap: wrap; }
+    .pac-busqueda-row { flex-direction: column; }
+    .pac-btn-buscar { width: 100%; justify-content: center; }
+}

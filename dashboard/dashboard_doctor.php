@@ -143,12 +143,12 @@ $hoy = date('Y-m-d');
                     <div class="panel-list">
                     <?php
                     $s = $conn->prepare("
-                        SELECT h.countHistoria, h.fechaExpedicion, h.motivoConsulta,
+                        SELECT h.contHistoria, h.fechaExpedicion, h.motivoConsulta,
                                CONCAT(u.nameUser,' ',u.secondNameUser) AS nombrePaciente
                         FROM historias_medicas h
                         JOIN usuario u ON u.`cont` = h.contPaciente
                         WHERE h.contDoctor=?
-                        ORDER BY h.fechaExpedicion DESC, h.countHistoria DESC
+                        ORDER BY h.fechaExpedicion DESC, h.contHistoria DESC
                         LIMIT 5
                     ");
                     $s->bind_param("i", $contDoctor);
@@ -172,7 +172,7 @@ $hoy = date('Y-m-d');
                                 <div class="panel-item-titulo"><?= htmlspecialchars($h['nombrePaciente']) ?></div>
                                 <div class="panel-item-sub"><?= htmlspecialchars($h['motivoConsulta']) ?></div>
                             </div>
-                            <a href="dashboard_doctor_historias.php?editar=<?= $h['countHistoria'] ?>" class="doc-btn-sm">
+                            <a href="dashboard_doctor_historias.php?editar=<?= $h['contHistoria'] ?>" class="doc-btn-sm">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
                         </div>

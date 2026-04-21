@@ -29,8 +29,12 @@
             error_log("usuario: ". $nombreUser." rol: ". $row['rolUser']. " inicio sesion");
             switch($row['rolUser']){
                 case 'doctor':
-                    echo "eres un doctor";
-                    break;
+                    $_SESSION['usuario'] = $emailUser;
+                    $_SESSION['nombre']  = $nombreUser;
+                    $_SESSION['rol']     = 'doctor';
+                    $_SESSION['id']      = $idUser;
+                    header("Location: ../index.php");
+                    exit;
                 case 'admin':
                     $_SESSION['usuario'] = $emailUser;
                     $_SESSION['nombre']  = $nombreUser;

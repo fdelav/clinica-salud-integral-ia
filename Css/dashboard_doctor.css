@@ -1,0 +1,538 @@
+/* ══════════════════════════════════════
+   dashboard_doctor.css
+   Estilos del panel médico.
+   Complementa dashboard.css — no duplicar variables ni layout base.
+══════════════════════════════════════ */
+
+/* Reutilizamos clases del paciente que comparten look */
+/* pac-alert, pac-alert-success, pac-alert-error, pac-filtros,
+   pac-filtro-btn, pac-btn-agendar, pac-btn-buscar, pac-empty
+   — se declaran también aquí para que el doctor no dependa del CSS del paciente */
+
+.pac-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.pac-alert-success { background:#f0fdf4; border:1.5px solid #6ee7b7; color:#065f46; }
+.pac-alert-error   { background:#fef2f2; border:1.5px solid #fca5a5; color:#991b1b; }
+
+.pac-btn-agendar {
+    display: inline-flex;
+    align-items: center;
+    background: var(--amarillo);
+    border: 2px solid var(--amarillo-borde);
+    color: #3a2f00;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background 0.18s, transform 0.15s;
+}
+.pac-btn-agendar:hover { background: var(--amarillo-hover); color:#000; transform:translateY(-1px); }
+
+.pac-filtros { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.pac-filtro-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: #5a4800;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    transition: background 0.18s, color 0.18s;
+}
+.pac-filtro-btn:hover, .pac-filtro-btn.active { background: var(--amarillo); color:#000; }
+
+.pac-btn-buscar {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: var(--amarillo);
+    border: 2px solid var(--amarillo-borde);
+    color: #3a2f00;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s;
+    white-space: nowrap;
+}
+.pac-btn-buscar:hover { background: var(--amarillo-hover); transform:translateY(-1px); }
+
+.doc-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 20px;
+    color: #bbb;
+    text-align: center;
+}
+.doc-empty i { font-size: 3rem; }
+.doc-empty p { font-size: 0.95rem; color:#aaa; margin:0; }
+
+/* ── Botón pequeño (editar en dashboard) ── */
+.doc-btn-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    color: var(--dorado);
+    font-size: 0.85rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.18s;
+}
+.doc-btn-sm:hover { background: var(--amarillo); color:#3a2f00; }
+
+/* ══════════════════════════════════════
+   PÁGINA: CITAS DEL DOCTOR
+══════════════════════════════════════ */
+
+.doc-citas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Separador de fecha */
+.doc-fecha-sep {
+    padding: 10px 4px 6px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #888;
+    border-bottom: 1.5px solid #f0e8c0;
+    margin-top: 12px;
+}
+.doc-fecha-sep:first-child { margin-top: 0; }
+.doc-fecha-sep.doc-fecha-hoy {
+    color: var(--dorado);
+    border-color: var(--amarillo);
+}
+
+/* Fila de cita */
+.doc-cita-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1.5px solid #ede8d0;
+    border-radius: 14px;
+    padding: 14px 18px;
+    transition: box-shadow 0.2s, transform 0.18s;
+}
+.doc-cita-row:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); transform:translateX(3px); }
+.doc-cita-libre { opacity: 0.55; }
+
+.doc-cita-hora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 54px;
+    flex-shrink: 0;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 10px;
+    padding: 8px 6px;
+    text-align: center;
+}
+.doc-hora-inicio {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #3a2f00;
+    line-height: 1;
+}
+.doc-hora-sep { font-size: 0.65rem; color: #ccc; margin: 2px 0; }
+.doc-hora-fin  { font-size: 0.75rem; color: #888; }
+
+.doc-cita-paciente {
+    flex: 1.2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.doc-paciente-nombre {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #3a2f00;
+}
+.doc-paciente-contacto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.78rem;
+    color: #888;
+}
+
+.doc-cita-detalle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.8rem;
+    color: #666;
+    min-width: 0;
+}
+
+.doc-cita-acciones {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.doc-btn-historia {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    color: #3a2f00;
+    text-decoration: none;
+    transition: background 0.18s;
+    white-space: nowrap;
+}
+.doc-btn-historia:hover { background: var(--amarillo); color:#000; }
+
+/* ══════════════════════════════════════
+   FORMULARIO DE HISTORIA MÉDICA
+══════════════════════════════════════ */
+
+/* Aviso cita preloaded */
+.doc-cita-preload-aviso {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fffde7;
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 14px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    color: #7a6000;
+}
+.doc-cita-preload-aviso > i { font-size:1.5rem; color:var(--dorado); flex-shrink:0; }
+.doc-cita-preload-aviso strong { display:block; font-size:0.92rem; }
+
+.doc-historia-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.doc-form-section {
+    background: #fff;
+    border: 1.5px solid #ede8d0;
+    border-radius: 16px;
+    padding: 22px 24px 18px;
+    margin-bottom: 18px;
+}
+
+.doc-form-section-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.doc-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.doc-form-grid .col-full { grid-column: 1 / -1; }
+.doc-form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.doc-textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: "Nunito", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.doc-requerido { color: #e05252; font-size: 0.85em; }
+.doc-opcional  { color: #aaa;    font-size: 0.82em; font-weight: 400; font-style: italic; }
+
+/* ══════════════════════════════════════
+   PÁGINA: LISTADO + EDICIÓN LADO A LADO
+══════════════════════════════════════ */
+
+.doc-historias-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+.doc-historias-layout.doc-con-edicion {
+    grid-template-columns: 420px 1fr;
+}
+
+.doc-buscador {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+.doc-buscador .input-icon-wrap {
+    position: relative;
+    flex: 1;
+}
+
+/* Lista de historias */
+.doc-historias-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: calc(100vh - 280px);
+    overflow-y: auto;
+    padding-right: 4px;
+}
+.doc-historias-lista::-webkit-scrollbar { width: 5px; }
+.doc-historias-lista::-webkit-scrollbar-thumb { background: var(--amarillo); border-radius: 10px; }
+
+.doc-historia-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 1.5px solid #ede8d0;
+    border-radius: 14px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #3a2f00;
+    cursor: pointer;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+}
+.doc-historia-item:hover {
+    border-color: var(--amarillo);
+    box-shadow: 0 4px 14px rgba(255,213,74,0.2);
+    background: #fffdf0;
+}
+.doc-historia-item.doc-historia-activa {
+    border-color: var(--amarillo);
+    background: var(--amarillo-claro);
+    box-shadow: 0 4px 14px rgba(255,213,74,0.3);
+}
+
+/* Columna fecha en listado */
+.doc-hist-fecha-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 44px;
+    flex-shrink: 0;
+    background: var(--amarillo-claro);
+    border: 1.5px solid var(--amarillo-borde);
+    border-radius: 10px;
+    padding: 6px 5px;
+}
+.doc-historia-activa .doc-hist-fecha-col { background: var(--amarillo); border-color: var(--amarillo-hover); }
+.doc-hist-dia  { font-family:"Montserrat",sans-serif; font-weight:800; font-size:1.3rem; color:#3a2f00; line-height:1; }
+.doc-hist-mes  { font-family:"Montserrat",sans-serif; font-weight:700; font-size:0.6rem; color:var(--dorado); letter-spacing:0.05em; }
+.doc-hist-anio { font-size:0.6rem; color:#aaa; }
+
+.doc-hist-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.doc-hist-paciente {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #3a2f00;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.doc-hist-id {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    color: #aaa;
+}
+.doc-hist-motivo {
+    font-size: 0.82rem;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.doc-hist-diagnostico {
+    font-size: 0.75rem;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.doc-hist-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+    color: var(--dorado);
+    background: var(--amarillo-claro);
+    border: 1px solid var(--amarillo-borde);
+    border-radius: 10px;
+    padding: 2px 8px;
+    width: fit-content;
+    margin-top: 2px;
+}
+.doc-hist-chevron { color:#ccc; font-size:0.9rem; flex-shrink:0; }
+.doc-historia-activa .doc-hist-chevron { color:var(--dorado); }
+
+/* ── Columna edición ── */
+.doc-historias-col-edicion {
+    background: #fff;
+    border: 1.5px solid #ede8d0;
+    border-radius: 16px;
+    overflow: hidden;
+    align-self: start;
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+.doc-historias-col-edicion::-webkit-scrollbar { width: 5px; }
+.doc-historias-col-edicion::-webkit-scrollbar-thumb { background: var(--amarillo); border-radius: 10px; }
+
+.doc-edicion-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+.doc-placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    color: #ccc;
+    padding: 40px;
+}
+.doc-placeholder-inner p { font-size: 0.9rem; color:#bbb; margin:0; }
+
+.doc-edicion-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 22px 14px;
+    background: var(--amarillo-claro);
+    border-bottom: 1.5px solid var(--amarillo-borde);
+}
+.doc-edicion-header h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #3a2f00;
+    margin: 0 0 4px;
+}
+.doc-edicion-paciente {
+    font-size: 0.82rem;
+    color: #666;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.doc-btn-cerrar-edicion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1.5px solid var(--amarillo-borde);
+    color: #888;
+    font-size: 0.85rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.18s, color 0.18s;
+}
+.doc-btn-cerrar-edicion:hover { background: #fee2e2; color:#991b1b; border-color:#fca5a5; }
+
+/* Form dentro de columna edición — quita bordes y fondo propios de las secciones */
+.doc-edicion-form { padding: 18px 22px 22px; }
+.doc-edicion-form .doc-form-section {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 0 16px;
+    border-bottom: 1px dashed #f0e8c0;
+    margin-bottom: 16px;
+}
+.doc-edicion-form .doc-form-section:last-of-type { border-bottom: none; }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+    .doc-historias-layout.doc-con-edicion {
+        grid-template-columns: 340px 1fr;
+    }
+}
+@media (max-width: 860px) {
+    .doc-historias-layout.doc-con-edicion {
+        grid-template-columns: 1fr;
+    }
+    .doc-historias-col-edicion {
+        position: static;
+        max-height: none;
+    }
+    .doc-historias-lista { max-height: 340px; }
+}
+@media (max-width: 768px) {
+    .doc-cita-row { flex-wrap: wrap; }
+    .doc-cita-detalle { display: none; } /* se oculta en móvil, ya está en paciente */
+    .doc-cita-acciones { flex-direction: row; align-items: center; }
+}
+@media (max-width: 576px) {
+    .doc-form-grid { grid-template-columns: 1fr; }
+    .doc-buscador { flex-wrap: wrap; }
+    .doc-buscador .pac-btn-buscar { width: 100%; justify-content: center; }
+}

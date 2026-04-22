@@ -1,17 +1,25 @@
 <?php
+require_once 'coneccion.php';
 
-    include 'coneccion.php';
+$idUser = $_POST['idUser'] ?? '';
+$tipoId = $_POST['tipoId'] ?? '';
 
-    $sql ="DELETE from usuario where cont=2";
+if ($idUser === '' || $tipoId === '') {
+    $_SESSION['admin_error'] = 'Datos incompletos. No se pudo eliminar el usuario.';
+    header('Location: ../dashboard/dashboard_admin_ver_usuarios.php');
+    exit;
+}
 
-    $result = $conn->query($sql);
+$stmt = $conn->prepare("DELETE FROM usuario WHERE tipoId = ? AND idUser = ?");
+$stmt->bind_param('ss', $tipoId, $idUser);
+$success = $stmt->execute();
+$stmt->close();
+$conn->close();
 
-    if ($conn->query($sql) === TRUE) {
-    echo "Record deleted successfully";
-    } else {
-    echo "Error deleting record: " . $conn->error;
-    }
-
-    $conn->close();
-
-?>
+if ($success) {
+    $_SESSION['admin_exito'] = 'Usuario eliminado correctamente.';
+} else {
+    $_SESSION['admin_error'] = 'Error al eliminar el usuario: ' . $conn->error;
+}
+header('Location: ../dashboard/dashboard_admin_ver_usuarios.php');
+exit;

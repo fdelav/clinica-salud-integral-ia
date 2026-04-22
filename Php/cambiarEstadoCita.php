@@ -1,6 +1,6 @@
 <?php
 require_once '../includes/sesiones.php';
-verificarRol(['secretario']);
+verificarRol(['recepcionista']);
 
 require '../Php/coneccion.php';
 

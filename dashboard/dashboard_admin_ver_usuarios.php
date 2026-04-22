@@ -349,8 +349,7 @@ function rolClass(string $rol): string {
                                         <i class="bi bi-pencil-fill"></i> Editar
                                     </a>
                                     <a href="dashboard_admin_eliminar_usuario.php?tipoId=<?= urlencode($u['tipoId']) ?>&idUser=<?= urlencode($u['idUser']) ?>"
-                                       class="btn-accion btn-eliminar"
-                                       onclick="return confirm('¿Eliminar a <?= htmlspecialchars(addslashes($u['nameUser'].' '.$u['secondNameUser'])) ?>?')">
+                                       class="btn-accion btn-eliminar">
                                         <i class="bi bi-trash-fill"></i> Eliminar
                                     </a>
                                 </div>

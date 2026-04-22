@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
             $sIns->bind_param(
-                "iiisssss s",
+                "iiissssss",
                 $contDoctor, $contPaciente, $contCita, $fechaExpedicion,
                 $motivoConsulta, $sintomas, $diagnostico, $recetaMedica, $incapacidadMedica
             );
@@ -128,6 +128,7 @@ $sCitas->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../Css/dashboard.css" rel="stylesheet">
     <link href="../Css/dashboard_doctor.css" rel="stylesheet">
+    <link href="../Css/my_style.css" rel="stylesheet">
 </head>
 <body>
 

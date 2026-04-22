@@ -6,7 +6,7 @@
     $passwordUser=$_POST['passwordUser'];
 
 
-    $sql="SELECT emailUser, passwordUser, rolUser 
+    $sql="SELECT emailUser, passwordUser, nameUser, idUser, rolUser 
         FROM usuario 
         WHERE emailUser = '$emailUser'";
     
@@ -26,36 +26,29 @@
             echo $row["emailUser"];
             echo "email: " . $row["emailUser"] . " - contraseña: " . $row["passwordUser"] . $row['rolUser']. "<br>";
              
-            error_log("usuario: ". $nombreUser." rol: ". $row['rolUser']. " inicio sesion");
+            error_log("usuario: ". $row["nameUser"]." rol: ". $row['rolUser']. " inicio sesion");
+
+            $_SESSION['usuario'] = $row["emailUser"];
+            $_SESSION['nombre']  = $row["nameUser"];
+            $_SESSION['id']      = $row["idUser"];
+
             switch($row['rolUser']){
                 case 'doctor':
-                    $_SESSION['usuario'] = $emailUser;
-                    $_SESSION['nombre']  = $nombreUser;
                     $_SESSION['rol']     = 'doctor';
-                    $_SESSION['id']      = $idUser;
-                    header("Location: ../index.php");
-                    exit;
+                    break;
                 case 'admin':
-                    $_SESSION['usuario'] = $emailUser;
-                    $_SESSION['nombre']  = $nombreUser;
                     $_SESSION['rol']     = 'admin';
-                    $_SESSION['id']      = $idUser;
-                    header("Location: ../index.php");
-                    exit;
+                    break;
                 case 'recep':
-                    $_SESSION['usuario'] = $emailUser;
-                    $_SESSION['nombre']  = $nombreUser;
                     $_SESSION['rol']     = 'recepcionista';
-                    $_SESSION['id']      = $idUser;
-                    header("Location: ../index.php");
-                    exit;
+                    break;
                 case 'paciente':
-                    $_SESSION['usuario'] = $emailUser;
-                    $_SESSION['nombre']  = $nombreUser;
                     $_SESSION['rol']     = 'paciente';
-                    $_SESSION['id']      = $idUser;
-                    header("Location: ../index.php");
+                    break;
             }
+            error_log(print_r($_SESSION));
+            header("Location: ../index.php");
+            exit;
         }
     } else {
         $_SESSION['error_login'] = 'Correo o contraseña incorrectos. Intenta de nuevo.';

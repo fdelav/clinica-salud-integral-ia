@@ -9,8 +9,8 @@ $mensajeExito = '';
 $mensajeError  = '';
 
 // ── POST: guardar edición ─────────────────────────────────────────────────
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['countHistoria'])) {
-    $countHistoria      = (int)   $_POST['countHistoria'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contHistoria'])) {
+    $contHistoria      = (int)   $_POST['contHistoria'];
     $fechaExpedicion    =          $_POST['fechaExpedicion']   ?? '';
     $motivoConsulta     = trim(    $_POST['motivoConsulta']    ?? '');
     $sintomas           = trim(    $_POST['sintomas']          ?? '') ?: null;
@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['countHistoria'])) {
         $mensajeError = 'La fecha y el motivo de consulta son obligatorios.';
     } else {
         // Verificar que la historia pertenece a este doctor
-        $sCheck = $conn->prepare("SELECT countHistoria FROM historias_medicas WHERE countHistoria=? AND contDoctor=?");
-        $sCheck->bind_param("ii", $countHistoria, $contDoctor);
+        $sCheck = $conn->prepare("SELECT contHistoria FROM historias_medicas WHERE contHistoria=? AND contDoctor=?");
+        $sCheck->bind_param("ii", $contHistoria, $contDoctor);
         $sCheck->execute();
         $sCheck->store_result();
         if ($sCheck->num_rows === 0) {
@@ -34,12 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['countHistoria'])) {
                 UPDATE historias_medicas SET
                     fechaExpedicion=?, motivoConsulta=?, sintomas=?,
                     diagnostico=?, recetaMedica=?, incapacidadMedica=?
-                WHERE countHistoria=? AND contDoctor=?
+                WHERE contHistoria=? AND contDoctor=?
             ");
             $sUp->bind_param("ssssssii",
                 $fechaExpedicion, $motivoConsulta, $sintomas,
                 $diagnostico, $recetaMedica, $incapacidadMedica,
-                $countHistoria, $contDoctor
+                $contHistoria, $contDoctor
             );
             if ($sUp->execute()) {
                 $mensajeExito = 'Historia médica actualizada correctamente.';
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['countHistoria'])) {
 $historiaEditar = null;
 $editarId = isset($_GET['editar']) ? (int)$_GET['editar'] : null;
 // Si POST falló con error, mantener el id para mostrar form
-if (isset($_POST['countHistoria']) && $mensajeError) $editarId = (int)$_POST['countHistoria'];
+if (isset($_POST['contHistoria']) && $mensajeError) $editarId = (int)$_POST['contHistoria'];
 
 if ($editarId) {
     $sEd = $conn->prepare("
@@ -63,7 +63,7 @@ if ($editarId) {
                u.idUser, u.tipoId
         FROM historias_medicas h
         JOIN usuario u ON u.`cont` = h.contPaciente
-        WHERE h.countHistoria=? AND h.contDoctor=?
+        WHERE h.contHistoria=? AND h.contDoctor=?
     ");
     $sEd->bind_param("ii", $editarId, $contDoctor);
     $sEd->execute();
@@ -90,14 +90,14 @@ if ($busqueda) {
 }
 
 $sLista = $conn->prepare("
-    SELECT h.countHistoria, h.fechaExpedicion, h.motivoConsulta,
+    SELECT h.contHistoria, h.fechaExpedicion, h.motivoConsulta,
            h.diagnostico, h.contCita,
            CONCAT(u.nameUser,' ',u.secondNameUser) AS nombrePaciente,
            u.idUser, u.tipoId
     FROM historias_medicas h
     JOIN usuario u ON u.`cont` = h.contPaciente
     WHERE h.contDoctor=? $whereBusq
-    ORDER BY h.fechaExpedicion DESC, h.countHistoria DESC
+    ORDER BY h.fechaExpedicion DESC, h.contHistoria DESC
 ");
 $sLista->bind_param($typesBusq, ...$paramsBusq);
 $sLista->execute();
@@ -115,6 +115,7 @@ $resLista = $sLista->get_result();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../Css/dashboard.css" rel="stylesheet">
     <link href="../Css/dashboard_doctor.css" rel="stylesheet">
+    <link href="../Css/my_style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -183,9 +184,9 @@ $resLista = $sLista->get_result();
                         <div class="doc-historias-lista">
                         <?php while ($h = $resLista->fetch_assoc()):
                             $fecha = new DateTime($h['fechaExpedicion']);
-                            $esActiva = $editarId && $editarId == $h['countHistoria'];
+                            $esActiva = $editarId && $editarId == $h['contHistoria'];
                         ?>
-                            <a href="?editar=<?= $h['countHistoria'] ?><?= $busqueda ? '&q='.urlencode($busqueda) : '' ?>"
+                            <a href="?editar=<?= $h['contHistoria'] ?><?= $busqueda ? '&q='.urlencode($busqueda) : '' ?>"
                                class="doc-historia-item <?= $esActiva ? 'doc-historia-activa' : '' ?>">
                                 <div class="doc-hist-fecha-col">
                                     <div class="doc-hist-dia"><?= $fecha->format('d') ?></div>
@@ -234,7 +235,7 @@ $resLista = $sLista->get_result();
                     </div>
 
                     <form method="POST" class="doc-historia-form doc-edicion-form">
-                        <input type="hidden" name="countHistoria" value="<?= $historiaEditar['countHistoria'] ?>">
+                        <input type="hidden" name="contHistoria" value="<?= $historiaEditar['contHistoria'] ?>">
 
                         <div class="doc-form-section">
                             <div class="doc-form-section-title">

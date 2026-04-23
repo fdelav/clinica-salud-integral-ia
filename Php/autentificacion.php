@@ -30,7 +30,7 @@
 
             $_SESSION['usuario'] = $row["emailUser"];
             $_SESSION['nombre']  = $row["nameUser"];
-            $_SESSION['id']      = $row["idUser"];
+            $_SESSION['id']      = $row["cont"];
 
             switch($row['rolUser']){
                 case 'doctor':

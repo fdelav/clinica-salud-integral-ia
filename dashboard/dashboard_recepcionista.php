@@ -186,7 +186,7 @@ function badgeEstado(string $estado): string {
                             </div>
                             <div class="panel-item-info">
                                 <span class="panel-item-titulo">
-                                    <?= $cita['countPaciente'] ? 'Paciente asignado' : '<em style="color:#aaa;">Sin paciente</em>' ?>
+                                    <?= $cita['contPaciente'] ? 'Paciente asignado' : '<em style="color:#aaa;">Sin paciente</em>' ?>
                                 </span>
                                 <span class="panel-item-sub">
                                     Dr. <?= htmlspecialchars($cita['nombreDoctor']) ?>

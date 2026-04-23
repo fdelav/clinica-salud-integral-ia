@@ -132,6 +132,7 @@
     border: 1.5px solid var(--amarillo-borde);
     overflow: hidden;
     overflow-x: auto;
+    min-height: 300px;
 }
 
 /* ══════════════════════════════════════

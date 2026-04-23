@@ -240,8 +240,8 @@ td {
 .rol-admin      { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
 .rol-doctor     { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
 .rol-enfermero  { background: #e0f2fe; color: #0c4a6e; border: 1px solid #7dd3fc; }
-.rol-secretario { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
-.rol-disenador  { background: #fce7f3; color: #831843; border: 1px solid #f9a8d4; }
+.rol-recep { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
+.rol-paciente  { background: #fce7f3; color: #831843; border: 1px solid #f9a8d4; }
 .rol-na         { background: #f3f4f6; color: #6b7280; border: 1px solid #d1d5db; }
 
 /* Botones editar / eliminar */

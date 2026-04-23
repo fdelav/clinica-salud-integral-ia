@@ -1,6 +1,41 @@
 <?php
 require_once '../includes/sesiones.php';
-verificarRol(['admin'])
+verificarRol(['admin']);
+
+require '../Php/coneccion.php';
+
+// ── Estadísticas ───────────────────────────────────────────────────────────────
+$hoy = date('Y-m-d');
+
+// Total usuarios
+$resTotal = $conn->query("SELECT COUNT(*) AS total FROM usuario");
+$totalUsuarios = $resTotal->fetch_assoc()['total'] ?? 0;
+
+// Doctores activos (rol = 'doctor')
+$resDoctores = $conn->query("SELECT COUNT(*) AS total FROM usuario WHERE rolUser = 'doctor'");
+$totalDoctores = $resDoctores->fetch_assoc()['total'] ?? 0;
+
+// Citas de hoy
+$resCitasHoy = $conn->query("SELECT COUNT(*) AS total FROM citas WHERE fechaCita = '$hoy'");
+$citasHoy = $resCitasHoy->fetch_assoc()['total'] ?? 0;
+
+// Administradores
+$resAdmins = $conn->query("SELECT COUNT(*) AS total FROM usuario WHERE rolUser = 'admin'");
+$totalAdmins = $resAdmins->fetch_assoc()['total'] ?? 0;
+
+
+
+$conn->close();
+
+function badgeEstado(string $estado): string {
+    return match($estado) {
+        'pendiente'  => 'background:#fff3cd; color:#856404;',
+        'confirmada' => 'background:#d1e7dd; color:#0f5132;',
+        'cancelada'  => 'background:#f8d7da; color:#842029;',
+        'completada' => 'background:#cfe2ff; color:#084298;',
+        default      => 'background:#e2e3e5; color:#41464b;',
+    };
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,6 +50,7 @@ verificarRol(['admin'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <link href="../Css/dashboard.css" rel="stylesheet">
+    <link href="../Css/my_style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -37,55 +73,54 @@ verificarRol(['admin'])
         <div class="content-area">
 
             <div class="welcome-header">
-                <h1>Bienvenido, Admin 👋</h1>
-                <p>Resumen general del sistema — Clínica Salud Integral</p>
+                <h1>Bienvenido, <?= htmlspecialchars($_SESSION['nombre'] ?? 'Administrador') ?></h1>
+                <p>Resumen general del sistema — Clínica Salud Integral · <?= date('d/m/Y') ?></p>
             </div>
 
             <!-- Estadísticas rápidas -->
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
-                    <div class="stat-value">—</div>
+                    <div class="stat-value"><?= $totalUsuarios ?></div>
                     <div class="stat-label">Usuarios registrados</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="bi bi-person-badge-fill"></i></div>
-                    <div class="stat-value">—</div>
+                    <div class="stat-value"><?= $totalDoctores ?></div>
                     <div class="stat-label">Doctores activos</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="bi bi-calendar-check-fill"></i></div>
-                    <div class="stat-value">—</div>
+                    <div class="stat-value"><?= $citasHoy ?></div>
                     <div class="stat-label">Citas hoy</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="bi bi-shield-fill-check"></i></div>
-                    <div class="stat-value">—</div>
+                    <div class="stat-value"><?= $totalAdmins ?></div>
                     <div class="stat-label">Administradores</div>
                 </div>
             </div>
 
-            <!-- Accesos rápidos (se activarán al crear las páginas CRUD) -->
+            <!-- Accesos rápidos -->
             <h3 class="section-title"><i class="bi bi-lightning-fill"></i> Accesos rápidos</h3>
             <div class="quick-grid">
-                <a href="#" class="quick-card" style="opacity:0.5; pointer-events:none;">
+                <a href="dashboard_admin_crear_usuario.php" class="quick-card">
                     <span class="qc-icon"><i class="bi bi-person-plus-fill"></i></span>
                     <span class="qc-label">Crear usuario</span>
                 </a>
-                <a href="#" class="quick-card" style="opacity:0.5; pointer-events:none;">
+                <a href="dashboard_admin_ver_usuarios.php" class="quick-card">
                     <span class="qc-icon"><i class="bi bi-people-fill"></i></span>
                     <span class="qc-label">Ver usuarios</span>
                 </a>
-                <a href="#" class="quick-card" style="opacity:0.5; pointer-events:none;">
+                <a href="dashboard_admin_editar_usuario.php" class="quick-card">
                     <span class="qc-icon"><i class="bi bi-person-gear"></i></span>
                     <span class="qc-label">Editar usuario</span>
                 </a>
-                <a href="#" class="quick-card" style="opacity:0.5; pointer-events:none;">
+                <a href="dashboard_admin_eliminar_usuario.php" class="quick-card">
                     <span class="qc-icon"><i class="bi bi-person-x-fill"></i></span>
                     <span class="qc-label">Eliminar usuario</span>
                 </a>
             </div>
-
         </div>
     </main>
 
